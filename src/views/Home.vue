@@ -52,37 +52,38 @@ export default {
       },
 
       async addTask(task) {
-        const res = await fetch('api/tasks',{
+        const res = await fetch('/api/tasks', {
           method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(task)
-        })
+          body: JSON.stringify(task),
+        });
 
-        const data = await res.json()
+        const data = await res.json();
 
-        this.tasks = [...this.tasks, task]
+        this.tasks = [...this.tasks, data];
       },
       
-      async fetchTasks() {
-        const res = await fetch('api/tasks')
+      // async fetchTasks() {
+      //   const res = await fetch('api/tasks')
 
-        const data = await res.json()
+      //   const data = await res.json()
 
-        return data
-      },
+      //   return data
+      // },
       
-      async fetchTask(id) {
-        const res = await fetch(`api/tasks/${id}`)
+      // async fetchTask(id) {
+      //   const res = await fetch(`api/tasks/${id}`)
 
-        const data = await res.json()
+      //   const data = await res.json()
 
-        return data
-      },
+      //   return data
+      // },
     },
     async created() {
-      this.tasks = await this.fetchTasks()
+      const res = await fetch('/api/tasks');
+      this.tasks = await res.json();
     }
 }
 </script>
