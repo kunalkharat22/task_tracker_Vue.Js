@@ -18,10 +18,10 @@ export default defineConfig({
   server: {
     proxy: {
       '^/api': {
-        target: '/.netlify/functions',
+        target: 'http://localhost:8888', // Replace with the URL of your Netlify serverless function
         changeOrigin: true,
         logLevel: 'debug',
-        rewrite: (path) => path.replace(/^\/api/, ''), // Remove '/api' from the request path
+        rewrite: (path) => path.replace(/^\/api/, '/.netlify/functions'),
       },
     },
   },

@@ -2,46 +2,52 @@
 const tasks = require('../../public/db.json').tasks;
 
 exports.handler = async (event, context) => {
-  const { httpMethod, body } = event;
-
-  if (httpMethod === 'GET') {
+  if (event.httpMethod === 'GET') {
     return {
       statusCode: 200,
       body: JSON.stringify(tasks),
     };
-  } else if (httpMethod === 'POST') {
-    const newTask = JSON.parse(body);
-    newTask.id = tasks.length + 1;
+  } else if (event.httpMethod === 'POST') {
+    const newTask = JSON.parse(event.body);
     tasks.push(newTask);
-
     return {
-      statusCode: 200,
+      statusCode: 201,
       body: JSON.stringify(newTask),
     };
-  } else if (httpMethod === 'PUT') {
-    const updatedTask = JSON.parse(body);
-    tasks.forEach((task, index) => {
-      if (task.id === updatedTask.id) {
-        tasks[index] = updatedTask;
-      }
-    });
-
+  } else if (event.httpMethod === 'PUT') {
+    const updatedTask = JSON.parse(event.body);
+    const index = tasks.findIndex((task) => task.id === updatedTask.id);
+    if (index !== -1) {
+      tasks[index] = updatedTask;
+      return {
+        statusCode: 200,
+        body: JSON.stringify(updatedTask),
+      };
+    } else {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ message: 'Task not found' }),
+      };
+    }
+  } else if (event.httpMethod === 'DELETE') {
+    const taskId = event.path.split('/').pop();
+    const index = tasks.findIndex((task) => task.id === parseInt(taskId));
+    if (index !== -1) {
+      const deletedTask = tasks.splice(index, 1)[0];
+      return {
+        statusCode: 200,
+        body: JSON.stringify(deletedTask),
+      };
+    } else {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({ message: 'Task not found' }),
+      };
+    }
+  } else {
     return {
-      statusCode: 200,
-      body: JSON.stringify(updatedTask),
-    };
-  } else if (httpMethod === 'DELETE') {
-    const taskId = JSON.parse(body).id;
-    tasks = tasks.filter((task) => task.id !== taskId);
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: 'Task deleted successfully.' }),
+      statusCode: 405,
+      body: JSON.stringify({ message: 'Method not allowed' }),
     };
   }
-
-  return {
-    statusCode: 404,
-    body: JSON.stringify({ message: 'Not found.' }),
-  };
 };
