@@ -17,11 +17,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '^/api': {
-        target: 'http://localhost:8888', // Replace with the URL of your Netlify serverless function
+      '/.netlify/functions': {
+        target: 'https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks', // Replace with the URL of your Netlify serverless function
         changeOrigin: true,
         logLevel: 'debug',
-        rewrite: (path) => path.replace(/^\/api/, '/.netlify/functions'),
       },
     },
   },
