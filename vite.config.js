@@ -18,10 +18,10 @@ export default defineConfig({
   server: {
     proxy: {
       '^/api': {
-        target: 'https://curious-daifuku-b7fe27.netlify.app', // Replace with your Netlify site URL
+        target: 'https://darkened-believed-argument.glitch.me/',
         changeOrigin: true,
         logLevel: 'debug',
-        rewrite: (path) => path.replace(/^\/api/, '/.netlify/functions'),
+        rewrite: (path) => path.replace(/^\/api/, '/'), // Use 'rewrite' instead of 'pathRewrite'
       },
     },
   },

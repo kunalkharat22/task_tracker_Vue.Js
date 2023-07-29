@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "update programs",
+      "day": "june 28th at 11:00am",
+      "reminder": true
+    },
+    {
+      "id": 3,
+      "text": "update resume",
+      "day": "june 25th at 1:00pm",
+      "reminder": false
+    },
+    {
+      "text": "Get Started",
+      "day": "august 1st at 11:00pm",
+      "reminder": true,
+      "id": 4
+    }
+  ]
+}
