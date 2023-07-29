@@ -15,13 +15,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // server: {
-  //   proxy: {
-  //     '/.netlify/functions': {
-  //       target: 'https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks', // Replace with the URL of your Netlify serverless function
-  //       changeOrigin: true,
-  //       logLevel: 'debug',
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      '^/api': {
+        target: 'https://curious-daifuku-b7fe27.netlify.app', // Replace with your Netlify site URL
+        changeOrigin: true,
+        logLevel: 'debug',
+        rewrite: (path) => path.replace(/^\/api/, '/.netlify/functions'),
+      },
+    },
+  },
 })
