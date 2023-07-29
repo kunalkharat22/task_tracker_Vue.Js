@@ -18,10 +18,10 @@ export default defineConfig({
   server: {
     proxy: {
       '^/api': {
-        target: 'http://localhost:3000',
+        target: '/.netlify/functions',
         changeOrigin: true,
         logLevel: 'debug',
-        rewrite: (path) => path.replace(/^\/api/, '/'), // Use 'rewrite' instead of 'pathRewrite'
+        rewrite: (path) => path.replace(/^\/api/, ''), // Remove '/api' from the request path
       },
     },
   },
