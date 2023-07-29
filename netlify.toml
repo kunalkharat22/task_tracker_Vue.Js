@@ -1,9 +1,0 @@
-[build]
-  publish = "dist"
-  functions = "netlify"
-
-[build.environment]
-  # If you have environment variables required for your app or API, you can define them here.
-
-[dev]
-  # If you want to enable Netlify Dev for local development, you can add configuration here.
