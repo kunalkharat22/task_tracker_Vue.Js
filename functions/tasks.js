@@ -1,30 +1,8 @@
 // functions/tasks.js
 
-let tasks = {
-  "tasks": [
-    {
-      "id": 1,
-      "text": "update programs",
-      "day": "june 28th at 11:00am",
-      "reminder": true
-    },
-    {
-      "id": 2,
-      "text": "call vuejs contactor",
-      "day": "june 27th at 10:30am",
-      "reminder": true
-    },
-    {
-      "id": 3,
-      "text": "update resume",
-      "day": "june 25th at 1:00pm",
-      "reminder": false
-    }
-  ]
-}
-  
+let tasks = [
   // Your existing tasks data from db.json or an empty array
-
+];
 
 // Function to generate a unique ID for new tasks
 function generateId() {
