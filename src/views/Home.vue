@@ -23,7 +23,7 @@ export default {
   methods: {
     async deleteTask(id) {
       if (confirm('Are you sure?')) {
-        const res = await fetch(`/api/tasks/${id}`, {
+        const res = await fetch(`/https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks/${id}`, {
           method: 'DELETE'
         })
 
@@ -39,7 +39,7 @@ export default {
       const taskToToggle = this.tasks.find((task) => task.id === id);
       const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
 
-      const res = await fetch(`/api/tasks/${id}`, {
+      const res = await fetch(`https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks/${id}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json"
@@ -56,7 +56,7 @@ export default {
     },
 
     async addTask(task) {
-      const res = await fetch('/api/tasks', {
+      const res = await fetch('/https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default {
     },
 
     async fetchTasks() {
-      const res = await fetch('/api/tasks');
+      const res = await fetch('/https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks');
 
       if (res.ok) {
         const data = await res.json();
@@ -85,7 +85,7 @@ export default {
     },
 
     async fetchTask(id) {
-      const res = await fetch(`/api/tasks/${id}`);
+      const res = await fetch(`/https://curious-daifuku-b7fe27.netlify.app/.netlify/functions/tasks/${id}`);
 
       if (res.ok) {
         const data = await res.json();
