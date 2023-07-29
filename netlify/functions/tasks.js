@@ -1,5 +1,26 @@
 // netlify/functions/tasks.js
-const tasks = require('../../public/db.json').tasks;
+const tasks = {
+  "tasks": [
+    {
+      "id": 1,
+      "text": "update programs",
+      "day": "june 28th at 11:00am",
+      "reminder": true
+    },
+    {
+      "id": 2,
+      "text": "call vuejs contactor",
+      "day": "june 27th at 10:30am",
+      "reminder": true
+    },
+    {
+      "id": 3,
+      "text": "update resume",
+      "day": "june 25th at 1:00pm",
+      "reminder": false
+    }
+  ]
+}
 
 exports.handler = async (event, context) => {
   if (event.httpMethod === 'GET') {
